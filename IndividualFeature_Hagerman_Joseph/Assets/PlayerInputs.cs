@@ -24,7 +24,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     ""name"": ""PlayerInputs"",
     ""maps"": [
         {
-            ""name"": ""New action map"",
+            ""name"": ""Player"",
             ""id"": ""24bd8492-d3ee-4b16-99b9-8ec4c11dc2d2"",
             ""actions"": [
                 {
@@ -118,10 +118,10 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // New action map
-        m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
-        m_Newactionmap_Jump = m_Newactionmap.FindAction("Jump", throwIfNotFound: true);
-        m_Newactionmap_Move = m_Newactionmap.FindAction("Move", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -178,34 +178,34 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // New action map
-    private readonly InputActionMap m_Newactionmap;
-    private INewactionmapActions m_NewactionmapActionsCallbackInterface;
-    private readonly InputAction m_Newactionmap_Jump;
-    private readonly InputAction m_Newactionmap_Move;
-    public struct NewactionmapActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_Move;
+    public struct PlayerActions
     {
         private @PlayerInputs m_Wrapper;
-        public NewactionmapActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Jump => m_Wrapper.m_Newactionmap_Jump;
-        public InputAction @Move => m_Wrapper.m_Newactionmap_Move;
-        public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
+        public PlayerActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(NewactionmapActions set) { return set.Get(); }
-        public void SetCallbacks(INewactionmapActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_NewactionmapActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Jump.started -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnJump;
-                @Move.started -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_NewactionmapActionsCallbackInterface.OnMove;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
             }
-            m_Wrapper.m_NewactionmapActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Jump.started += instance.OnJump;
@@ -217,8 +217,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
             }
         }
     }
-    public NewactionmapActions @Newactionmap => new NewactionmapActions(this);
-    public interface INewactionmapActions
+    public PlayerActions @Player => new PlayerActions(this);
+    public interface IPlayerActions
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
