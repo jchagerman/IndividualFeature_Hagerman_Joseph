@@ -9,12 +9,10 @@ public class PlayerController : MonoBehaviour
     public float jumpStrength;
     public Rigidbody rb;
     public Vector3 Movement;
-    private PlayerInputs playerInputActions;
+    public bool isGrounded;
 
     private void Awake()
     {
-        playerInputActions = new PlayerInputs();
-        playerInputActions.Enable();
         rb = GetComponent<Rigidbody>();
     }
     public void Jump(InputAction.CallbackContext context)
@@ -26,7 +24,30 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Vector2 moveVec = playerInputActions.Player.Move.ReadValue<Vector2>();
-        rb.AddForce(new Vector3(moveVec.x, 0, moveVec.y) * 5f, ForceMode.Force);
+        float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        float straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+
+        transform.Translate(straffe, 0, translation);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
+        {
+            if (hit.distance <= 1.1)
+            {
+                isGrounded = true;
+
+            }
+            else
+            {
+                isGrounded = false;
+            }
+        }
+
+
+
+        if (Input.GetKey("space") && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+        }
     }
 }
