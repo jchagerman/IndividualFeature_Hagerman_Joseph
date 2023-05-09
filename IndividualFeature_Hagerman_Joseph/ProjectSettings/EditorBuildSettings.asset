@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Present.unity
     guid: 7867ffc3a0fb74249a211b6c2b548a79
+  - enabled: 1
+    path: Assets/Scenes/Past.unity
+    guid: 9004178371021a742abe0c8e077e031d
+  - enabled: 1
+    path: Assets/Scenes/Good Future.unity
+    guid: f7abcc4b10234da45b147aea86c112bd
+  - enabled: 1
+    path: Assets/Scenes/Bad Future.unity
+    guid: 2c7226377332d2a4f90ff42c5e564726
   m_configObjects: {}
