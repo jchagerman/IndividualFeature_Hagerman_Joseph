@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         //otherwise, negate the time travel request
 
 
-        //
+        
     }
 
     private IEnumerator Timer()
@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             TravelProgress += 0.1f;
+
+            
         }
     }
 
@@ -95,6 +97,10 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
+        }
+        if (other.transform.parent.CompareTag("PastSign"))
+        {
+
         }
     }
 }
