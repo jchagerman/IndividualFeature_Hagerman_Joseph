@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     static public GameObject player;
 
+    public float Magnitude;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,6 +29,9 @@ public class PlayerController : MonoBehaviour
         {
             player = this.gameObject;
         }
+
+        var vel = rb.velocity;
+        Magnitude = vel.magnitude;
     }
 
     private void FixedUpdate()
