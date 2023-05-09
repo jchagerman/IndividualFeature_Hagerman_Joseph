@@ -36,38 +36,82 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Load Present
         if (Input.GetKey("1"))
         {
             SceneManager.LoadScene(0);
             TimeZone = 1;
-            Debug.Log(TimeZone);
         }
+        //Load Past
         if (Input.GetKey("2"))
         {
             SceneManager.LoadScene(1);
             TimeZone = 2;
-            Debug.Log(TimeZone);
         }
+        //Load Future
         if (Input.GetKey("3"))
         {
             if (generatorDestroyed)
             {
                 SceneManager.LoadScene(2);
                 TimeZone = 3;
-                Debug.Log(TimeZone);
             }
             else
             {
                 SceneManager.LoadScene(3);
                 TimeZone = 4;
-                Debug.Log(TimeZone);
             }
         }
 
+
+        if (Input.GetKey("p"))
+        {
+            PastActive = true;
+            FutureActive = false;
+        }
+        if (Input.GetKey("f"))
+        {
+            PastActive = false;
+            FutureActive = true;
+        }
     }
 
     public void Teleport()
     {
-
+        if (PastActive)
+        {
+            if (TimeZone == 3 || TimeZone == 4)
+            {
+                SceneManager.LoadScene(0);
+                TimeZone = 1;
+            }
+            else if (TimeZone == 1)
+            {
+                SceneManager.LoadScene(1);
+                TimeZone = 2;
+            }
+        }
+        else if (FutureActive)
+        {
+            if (TimeZone == 2)
+            {
+                SceneManager.LoadScene(0);
+                TimeZone = 1;
+            }
+            else if (TimeZone == 1)
+            {
+                if (generatorDestroyed)
+                {
+                    SceneManager.LoadScene(2);
+                    TimeZone = 3;
+                }
+                else
+                {
+                    SceneManager.LoadScene(3);
+                    TimeZone = 4;
+                }
+            }
+        }
+        PlayerController.player.GetComponent<PlayerController>().travelling = false;
     }
 }

@@ -10,13 +10,18 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public Vector3 Movement;
     public bool isGrounded;
+    public bool travelling;
 
     public float TimeForTravel;
     public float TravelProgress;
 
+    public float DeltaTime;
+
     static public GameObject player;
 
     public float Magnitude;
+
+    
 
     private void Awake()
     {
@@ -61,30 +66,47 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
-
-
-        //if you reach near max speed, start the TravelProgress Timer
-        //if you reach a stop, and the progress has not exceeded 1.5 seconds, reset the timer to zero
-        //otherwise, negate the time travel request
-
-
-        
     }
 
-    private IEnumerator Timer()
+    public IEnumerator TravelTimer()
     {
-        while (true)
+        travelling = true;
+        while (travelling == true)
         {
-            yield return new WaitForSeconds(0.1f);
-            TravelProgress += 0.1f;
+            yield return new WaitForSeconds(3f);
+            DeltaTime += Time.deltaTime;
+            TravelProgress = DeltaTime;
 
-            
+            if (TravelProgress >= TimeForTravel)
+            {
+                GameManager.Manager.GetComponent<GameManager>().Teleport();                
+                DeltaTime = 0;
+                TravelProgress = 0;
+                travelling = false;
+            }
         }
     }
 
     private void Update()
     {
-        //if there's a clone of the player, destroy it, otherwise, keep it  
+        if (player.GetComponent<Rigidbody>().IsSleeping())
+        {
+            StopCoroutine(TravelTimer());
+            DeltaTime = 0;
+            TravelProgress = 0;
+            if (TravelProgress >= 1.5)
+            {             
+                GameManager.Manager.GetComponent<GameManager>().PastActive = false;
+                GameManager.Manager.GetComponent<GameManager>().FutureActive = false;
+            }
+        }
+        else
+        {
+            if (GameManager.Manager.GetComponent<GameManager>().PastActive || GameManager.Manager.GetComponent<GameManager>().FutureActive)
+            {
+                StartCoroutine(TravelTimer());
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
