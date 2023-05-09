@@ -11,17 +11,14 @@ public class PlayerController : MonoBehaviour
     public Vector3 Movement;
     public bool isGrounded;
 
+    public float TimeForTravel;
+    public float TravelProgress;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
-        }
-    }
+
     private void FixedUpdate()
     {
         float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
