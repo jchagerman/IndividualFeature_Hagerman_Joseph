@@ -11,18 +11,26 @@ public class Generator : MonoBehaviour
     /// </summary>
     public bool FutureType;
 
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Destroyed = GameObject.FindWithTag("Demolished");
+        Active = GameObject.FindWithTag("Generator");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (true)
+        if (GameManager.Manager.GetComponent<GameManager>().generatorDestroyed == false)
         {
-
+            Active.SetActive(true);
+            Destroyed.SetActive(false);
+        }
+        else
+        {
+            Active.SetActive(false);
+            Destroyed.SetActive(true);
         }
     }
 }

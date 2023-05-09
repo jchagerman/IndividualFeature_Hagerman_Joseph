@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,9 +14,19 @@ public class PlayerController : MonoBehaviour
     public float TimeForTravel;
     public float TravelProgress;
 
+    static public GameObject player;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if (player != null && player != this.gameObject)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            player = this.gameObject;
+        }
     }
 
     private void FixedUpdate()
@@ -47,8 +57,32 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
 
+
         //if you reach near max speed, start the TravelProgress Timer
         //if you reach a stop, and the progress has not exceeded 1.5 seconds, reset the timer to zero
         //otherwise, negate the time travel request
+    }
+
+    private void Update()
+    {
+        //if there's a clone of the player, destroy it, otherwise, keep it  
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Generator") && isGrounded == false)
+        {
+            Debug.Log("Tried to make a good future.");
+            Debug.Log(GameManager.Manager.GetComponent<GameManager>().TimeZone);
+            if (GameManager.Manager.GetComponent<GameManager>().TimeZone == 2)
+            {
+                GameManager.Manager.GetComponent<GameManager>().generatorDestroyed = true;
+                Debug.Log("You have made a good future!");
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }
