@@ -465,7 +465,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   Movement: {x: 0, y: 0, z: 0}
   isGrounded: 0
-  TimeForTravel: 0
+  TimeForTravel: 3.5
   TravelProgress: 0
 --- !u!1 &1131176087
 GameObject:

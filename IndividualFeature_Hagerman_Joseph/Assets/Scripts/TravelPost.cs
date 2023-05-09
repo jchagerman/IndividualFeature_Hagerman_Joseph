@@ -5,7 +5,7 @@ using UnityEngine;
 public class TravelPost : MonoBehaviour
 {
     public bool isActive;
-
+    public GameObject Sign;
 
     // Start is called before the first frame update
     void Start()
@@ -17,5 +17,10 @@ public class TravelPost : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Spin()
+    {
+        Sign.transform.Rotate(new Vector3(0, 0, 360) * Time.deltaTime);
     }
 }

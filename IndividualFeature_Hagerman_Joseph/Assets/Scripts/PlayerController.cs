@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
 
-
+        //if you reach near max speed, start the TravelProgress Timer
+        //if you reach a stop, and the progress has not exceeded 1.5 seconds, reset the timer to zero
+        //otherwise, negate the time travel request
     }
 }
