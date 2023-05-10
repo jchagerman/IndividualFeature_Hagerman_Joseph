@@ -8,6 +8,8 @@ public class TravelPost : MonoBehaviour
     public GameObject Sign;
     public GameObject InactiveSign;
 
+    public float rotation = 720;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +18,28 @@ public class TravelPost : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        InactiveSign.transform.Rotate(new Vector3(0, 0, 360) * Time.deltaTime);
+        if (InactiveSign.activeSelf == true)
+        {
+            InactiveSign.transform.Rotate(new Vector3(0, rotation, 0) * Time.deltaTime);
+            StartCoroutine(DeactivationTimer());
+        }
+    }
+
+    public IEnumerator DeactivationTimer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            rotation = 0;
+
+        }
     }
 
     public void Spin()
     {
         Sign.SetActive(false);
-        InactiveSign.SetActive(true);    
+        InactiveSign.SetActive(true);
     }
 }
