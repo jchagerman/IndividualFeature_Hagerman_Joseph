@@ -277,11 +277,11 @@ GameObject:
   - component: {fileID: 314394117}
   m_Layer: 5
   m_Name: Past
-  m_TagString: Untagged
+  m_TagString: Past
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &314394116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -691,6 +691,7 @@ GameObject:
   - component: {fileID: 1392881260}
   - component: {fileID: 1392881259}
   - component: {fileID: 1392881258}
+  - component: {fileID: 1392881261}
   - component: {fileID: 1392881257}
   m_Layer: 5
   m_Name: Canvas
@@ -708,14 +709,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1392881256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: 532946a4b0c70c44cb769bd5441d2364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  PastUI: {fileID: 314394115}
+  FutureUI: {fileID: 1643000563}
 --- !u!114 &1392881258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +779,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1392881261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392881256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1643000563
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,11 +809,11 @@ GameObject:
   - component: {fileID: 1643000565}
   m_Layer: 5
   m_Name: Future
-  m_TagString: Untagged
+  m_TagString: Future
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1643000564
 RectTransform:
   m_ObjectHideFlags: 0
@@ -908,7 +923,7 @@ MonoBehaviour:
   Movement: {x: 0, y: 0, z: 0}
   isGrounded: 0
   travelling: 0
-  TimeForTravel: 3.5
+  TimeForTravel: 5
   TravelProgress: 0
   DeltaTime: 0
   Magnitude: 0
@@ -1220,7 +1235,6 @@ MonoBehaviour:
   generatorDestroyed: 0
   PastActive: 0
   FutureActive: 0
-  UI: {fileID: 0}
 --- !u!1001 &1312456741146738917
 PrefabInstance:
   m_ObjectHideFlags: 0

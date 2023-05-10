@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public bool FutureActive;
 
     static public GameObject Manager;
-    public GameObject UI;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +31,10 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(PlayerController.player);
         DontDestroyOnLoad(this);
-        DontDestroyOnLoad(UI);
+        DontDestroyOnLoad(UICanvas.UI);
+
+        PastActive = false;
+        FutureActive = false;
     }
 
     // Update is called once per frame
@@ -75,6 +77,22 @@ public class GameManager : MonoBehaviour
         {
             PastActive = false;
             FutureActive = true;
+        }
+
+        if (PastActive && TimeZone == 2)
+        {
+            PastActive = false;
+            FutureActive = false;
+        }
+        if (FutureActive && TimeZone == 3)
+        {
+            PastActive = false;
+            FutureActive = false;
+        }
+        if (FutureActive && TimeZone == 4)
+        {
+            PastActive = false;
+            FutureActive = false;
         }
     }
 

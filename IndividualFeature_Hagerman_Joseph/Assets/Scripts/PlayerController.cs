@@ -127,7 +127,21 @@ public class PlayerController : MonoBehaviour
         }
         if (other.transform.parent.CompareTag("PastSign"))
         {
-
+            if (other.transform.parent.gameObject.GetComponent<PastPost>().isActive)
+            {
+                other.transform.parent.gameObject.GetComponent<PastPost>().Spin();
+                GameManager.Manager.GetComponent<GameManager>().PastActive = true;
+                GameManager.Manager.GetComponent<GameManager>().FutureActive = false;
+            } 
+        }
+        if (other.transform.parent.CompareTag("FutureSign"))
+        {
+            if (other.transform.parent.gameObject.GetComponent<FuturePost>().isActive)
+            {
+                other.transform.parent.gameObject.GetComponent<FuturePost>().Spin();
+                GameManager.Manager.GetComponent<GameManager>().FutureActive = true;
+                GameManager.Manager.GetComponent<GameManager>().PastActive = false;
+            }
         }
     }
 }

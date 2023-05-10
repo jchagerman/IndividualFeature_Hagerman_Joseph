@@ -8,6 +8,9 @@ TagManager:
   - Demolished
   - PastSign
   - FutureSign
+  - Past
+  - Future
+  - Canvas
   layers:
   - Default
   - TransparentFX
