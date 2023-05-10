@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool FutureActive;
 
     static public GameObject Manager;
+    public GameObject UI;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(PlayerController.player);
         DontDestroyOnLoad(this);
+        DontDestroyOnLoad(UI);
     }
 
     // Update is called once per frame
@@ -113,5 +115,7 @@ public class GameManager : MonoBehaviour
             }
         }
         PlayerController.player.GetComponent<PlayerController>().travelling = false;
+        PastActive = false;
+        FutureActive = false;
     }
 }

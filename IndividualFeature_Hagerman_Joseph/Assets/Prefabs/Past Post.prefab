@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 1372596162444354769}
   m_Layer: 0
   m_Name: Past Post
-  m_TagString: Untagged
+  m_TagString: PastSign
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   Sign: {fileID: 1312456741851607076}
+  InactiveSign: {fileID: 5708156661406164384}
 --- !u!1 &1312456740356762226
 GameObject:
   m_ObjectHideFlags: 0
