@@ -9,6 +9,8 @@ public class UICanvas : MonoBehaviour
     public GameObject PastUI;
     public GameObject FutureUI;
 
+    public bool flicker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,5 +42,6 @@ public class UICanvas : MonoBehaviour
             PastUI.SetActive(false);
             FutureUI.SetActive(false);
         }
+
     }
 }

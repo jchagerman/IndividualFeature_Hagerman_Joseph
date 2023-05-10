@@ -29,12 +29,8 @@ public class TravelPost : MonoBehaviour
 
     public IEnumerator DeactivationTimer()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1.0f);
-            rotation = 0;
-
-        }
+        yield return new WaitForSeconds(2.0f);
+        rotation = 0;
     }
 
     public void Spin()

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool FutureActive;
 
     static public GameObject Manager;
+    public bool Flicker;
 
     // Start is called before the first frame update
     void Start()
