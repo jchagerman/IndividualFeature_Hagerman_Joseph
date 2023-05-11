@@ -8,8 +8,8 @@ public class UICanvas : MonoBehaviour
     static public GameObject UI;
     public GameObject PastUI;
     public GameObject FutureUI;
-
-    public bool flicker;
+    public GameObject TravelTransition;
+    public GameObject WhiteScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,8 @@ public class UICanvas : MonoBehaviour
         {
             UI = this.gameObject;
         }
+        TravelTransition.SetActive(false);
+        WhiteScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,6 +44,5 @@ public class UICanvas : MonoBehaviour
             PastUI.SetActive(false);
             FutureUI.SetActive(false);
         }
-
     }
 }

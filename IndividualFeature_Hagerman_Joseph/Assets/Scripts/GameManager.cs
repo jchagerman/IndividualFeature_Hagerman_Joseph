@@ -133,8 +133,24 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+        StartCoroutine(DisguiseSwap());
+
         PlayerController.player.GetComponent<PlayerController>().travelling = false;
         PastActive = false;
         FutureActive = false;
+    }
+
+    public IEnumerator DisguiseSwap()
+    {
+        UICanvas.UI.GetComponent<UICanvas>().WhiteScreen.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        UICanvas.UI.GetComponent<UICanvas>().WhiteScreen.SetActive(false);
+        UICanvas.UI.GetComponent<UICanvas>().TravelTransition.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        UICanvas.UI.GetComponent<UICanvas>().WhiteScreen.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        UICanvas.UI.GetComponent<UICanvas>().TravelTransition.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        UICanvas.UI.GetComponent<UICanvas>().WhiteScreen.SetActive(false);
     }
 }
